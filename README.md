@@ -27,7 +27,7 @@
 
 Для тестов понадобится зависимость в pom.xml:
 
-```javascript
+```
 <dependency>
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-test</artifactId>
@@ -91,7 +91,7 @@ class TruthProviderTest {
 
 ### static/style.css
 
-```javascript
+```css
 body {
     font-family: Arial, sans-serif;
     margin: 20px;
@@ -168,9 +168,9 @@ button:hover {
 ```
 
 
-### templates/movies.htm
+### templates/movies.html
 
-```markup
+```html
 <!DOCTYPE HTML>
 <html xmlns:th="https://www.thymeleaf.org">
 <head>
@@ -239,7 +239,7 @@ button:hover {
 
 ### templates/recommendations.html
 
-```markup
+```html
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
