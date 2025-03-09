@@ -25,14 +25,12 @@
 
 Каждый разработчик отвечает за написание unit-тестов для своей части функционала с использованием **JUnit5 и Mockito**. Тестируйте пограничные кейсы, а не только ожидаемое поведение. Валидируйте полученные данные на уровне бизнес-логики и тестируйте правильность валидации.
 
-Для тестов понадобится зависимость в pom.xml:
+Для тестов понадобится зависимость в build.gradle.kts:
 
 ```
-<dependency>
-    <groupId>org.springframework.boot</groupId>
-    <artifactId>spring-boot-starter-test</artifactId>
-    <scope>test</scope>
-</dependency>
+dependencies {
+    testImplementation("org.springframework.boot:spring-boot-starter-test")
+}
 ```
 
 
