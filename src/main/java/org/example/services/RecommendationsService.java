@@ -1,5 +1,6 @@
-package org.example;
+package org.example.services;
 
+import org.example.Movie;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

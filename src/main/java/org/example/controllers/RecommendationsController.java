@@ -1,7 +1,8 @@
-package org.example;
+package org.example.controllers;
 
+import org.example.Movie;
+import org.example.services.RecommendationsService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
