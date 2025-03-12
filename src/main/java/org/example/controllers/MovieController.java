@@ -1,6 +1,9 @@
-package org.example;
+package org.example.controllers;
 
+import org.example.Movie;
+import org.example.services.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,10 +22,13 @@ public class MovieController {
 
     @GetMapping
     public ResponseEntity<List<Movie>> getAllMovies() {
+        return ResponseEntity.ok(movieService.getAllMovies());
     }
 
     @PostMapping("/add")
     public ResponseEntity<String> addMovie(@RequestBody Movie movie) {
+        movieService.addMovie(movie);
+        return ResponseEntity.status(HttpStatus.CREATED).body("Фильм добавлен");
     }
 
     @PutMapping("/{id}/rating")
