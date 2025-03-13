@@ -3,6 +3,7 @@ package org.example.services;
 import org.example.Movie;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -13,13 +14,20 @@ public class MovieService {
     private final Map<Integer, Movie> movies = new HashMap<>();
     private int nextId = 1;
 
-    public void addMovie(String title, float rating, String comment) {
-        Movie movie = new Movie(title, rating, comment, nextId);
-        movies.put(nextId++, movie);
+    public void addMovie(Movie movie) {
+        if (!isMovieWithTitleExists(movie.getTitle())) {
+            movies.put(nextId++, movie);
+        } else {
+            throw new IllegalArgumentException("title already exists");
+        }
     }
 
     public List<Movie> getAllMovies() {
-        return (List<Movie>) movies.values();
+        List<Movie> copyList = new ArrayList<>();
+        for (Movie movie : movies.values()) {
+            copyList.add(movie.copy());
+        }
+        return copyList;
     }
 
     public boolean isMovieWithTitleExists(String title) {
@@ -30,7 +38,6 @@ public class MovieService {
                 return true;
             }
         }
-
         return false;
     }
 
@@ -43,31 +50,24 @@ public class MovieService {
 
     public Movie getMovieById(int id) {
         if (isMovieWithIdExists(id)) {
-            return Movie
+            return movies.get(id);
         }
-        for (Movie movie : getAllMovies()) {
-            if (movie.getId() == id) {
-                return movie;
-            }
-        }
-        return null;
+        throw new IllegalArgumentException("id not found");
     }
 
     public void updateMovieRating(int id, float newRating) {
-        for (Movie movie : movies) {
-            if (movie.getId() == id) {
-                movie.setRating(newRating);
-                return;
-            }
+        if (isMovieWithIdExists(id)) {
+            movies.get(id).setRating(newRating);
+        } else {
+            throw new IllegalArgumentException("id not found");
         }
     }
 
     public void updateMovieComment(int id, String newComment) {
-        for (Movie movie : movies) {
-            if (movie.getId() == id) {
-                movie.setComment(newComment);
-                return;
-            }
+        if (isMovieWithIdExists(id)) {
+            movies.get(id).setComment(newComment);
+        } else {
+            throw new IllegalArgumentException("id not found");
         }
     }
 }
