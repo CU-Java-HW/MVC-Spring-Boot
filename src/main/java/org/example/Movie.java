@@ -26,6 +26,10 @@ public class Movie {
         this.comment = comment;
     }
 
+    public Movie copy() {
+        return new Movie(title, rating, comment);
+    }
+
     public void setRating(float rating) {
         this.rating = rating;
     }
