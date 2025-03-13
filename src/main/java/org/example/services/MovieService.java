@@ -19,8 +19,8 @@ public class MovieService {
         return movies;
     }
 
-    public Movie getMovieByTitle(String title) {
-        if (title == null) return null;
+    public Movie isMovieWithTitleExists(String title) {
+        if (title == null) throw new IllegalArgumentException("blank title");
 
         for (Movie movie : movies) {
             if (movie.getTitle() == title) {
