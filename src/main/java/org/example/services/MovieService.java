@@ -14,7 +14,7 @@ public class MovieService {
     private final Map<Integer, Movie> movies = new HashMap<>();
     private int nextId = 1;
 
-    public void addMovie(Movie movie) {
+    public void addMovie(Movie movie) throws IllegalArgumentException {
         if (!isMovieWithTitleExists(movie.getTitle())) {
             movies.put(nextId++, movie);
         } else {
@@ -30,7 +30,7 @@ public class MovieService {
         return copyList;
     }
 
-    public boolean isMovieWithTitleExists(String title) {
+    public boolean isMovieWithTitleExists(String title) throws IllegalArgumentException {
         if (title == null) throw new IllegalArgumentException("blank title");
 
         for (Movie movie : getAllMovies()) {
@@ -48,14 +48,14 @@ public class MovieService {
         return false;
     }
 
-    public Movie getMovieById(int id) {
+    public Movie getMovieById(int id) throws IllegalArgumentException {
         if (isMovieWithIdExists(id)) {
             return movies.get(id);
         }
         throw new IllegalArgumentException("id not found");
     }
 
-    public void updateMovieRating(int id, float newRating) {
+    public void updateMovieRating(int id, float newRating) throws IllegalArgumentException {
         if (isMovieWithIdExists(id)) {
             movies.get(id).setRating(newRating);
         } else {
@@ -63,7 +63,7 @@ public class MovieService {
         }
     }
 
-    public void updateMovieComment(int id, String newComment) {
+    public void updateMovieComment(int id, String newComment) throws IllegalArgumentException {
         if (isMovieWithIdExists(id)) {
             movies.get(id).setComment(newComment);
         } else {
