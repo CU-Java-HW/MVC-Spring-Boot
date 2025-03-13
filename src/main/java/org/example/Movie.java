@@ -2,33 +2,28 @@ package org.example;
 
 public class Movie {
 
-    private final int id;
     private final String title;
     private float rating;
     private String comment;
 
-    public Movie(int id, String title) {
-        this.id = id;
+    public Movie(String title) {
         this.title = title;
     }
 
-    public Movie(int id, String title, float rating) {
-        this.id = id;
+    public Movie(String title, float rating) {
         this.title = title;
         this.rating = rating;
     }
 
-    public Movie(String comment, String title, int id) {
+    public Movie(String comment, String title) {
         this.comment = comment;
         this.title = title;
-        this.id = id;
     }
 
-    public Movie(String title, float rating, String comment, int id) {
+    public Movie(String title, float rating, String comment) {
         this.title = title;
         this.rating = rating;
         this.comment = comment;
-        this.id = id;
     }
 
     public void setRating(float rating) {
