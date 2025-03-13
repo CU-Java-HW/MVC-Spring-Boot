@@ -9,7 +9,8 @@ import java.util.List;
 @Service
 public class MovieService {
 
-    private final List<Movie> movies = new ArrayList<>();
+    private final Map<Integer, Movie> movies = new HashMap<>();
+    private int nextId = 1;
 
     public void addMovie(Movie movie) {
         movies.add(movie);
