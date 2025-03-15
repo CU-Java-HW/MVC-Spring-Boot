@@ -2,33 +2,20 @@ package org.example;
 
 public class Movie {
 
-    private final int id;
-    private final String title;
+    private final String name;
     private float rating;
     private String comment;
 
-    public Movie(int id, String title) {
-        this.id = id;
-        this.title = title;
-    }
-
-    public Movie(int id, String title, float rating) {
-        this.id = id;
-        this.title = title;
-        this.rating = rating;
-    }
-
-    public Movie(String comment, String title, int id) {
-        this.comment = comment;
-        this.title = title;
-        this.id = id;
-    }
-
-    public Movie(String title, float rating, String comment, int id) {
-        this.title = title;
+    public Movie(String name,
+                 float rating,
+                 String comment) {
+        this.name = name;
         this.rating = rating;
         this.comment = comment;
-        this.id = id;
+    }
+
+    public Movie copy() {
+        return new Movie(name, rating, comment);
     }
 
     public void setRating(float rating) {
@@ -47,7 +34,7 @@ public class Movie {
         return rating;
     }
 
-    public String getTitle() {
-        return title;
+    public String getName() {
+        return name;
     }
 }
