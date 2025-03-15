@@ -15,7 +15,7 @@ public class MovieService {
     private int nextId = 1;
 
     public void addMovie(Movie movie) throws IllegalArgumentException {
-        if (!isMovieWithTitleExists(movie.getTitle())) {
+        if (!isMovieWithTitleExists(movie.getName())) {
             movies.put(nextId++, movie);
         } else {
             throw new IllegalArgumentException("title already exists");
@@ -34,7 +34,7 @@ public class MovieService {
         if (title == null) throw new IllegalArgumentException("blank title");
 
         for (Movie movie : getAllMovies()) {
-            if (movie.getTitle() == title) {
+            if (movie.getName().equals(title)) {
                 return true;
             }
         }
