@@ -20,22 +20,38 @@ public class MovieController {
         this.movieService = movieService;
     }
 
-    @GetMapping
+    @GetMapping("/")
     public ResponseEntity<List<Movie>> getAllMovies() {
         return ResponseEntity.ok(movieService.getAllMovies());
     }
 
     @PostMapping("/add")
-    public ResponseEntity<String> addMovie(@RequestBody Movie movie) {
-        movieService.addMovie(movie);
-        return ResponseEntity.status(HttpStatus.CREATED).body("Фильм добавлен");
+    public ResponseEntity<String> addMovie(@RequestBody Movie request) {
+        try {
+            movieService.addMovie(request);
+            return ResponseEntity.status(HttpStatus.CREATED).body("Фильм добавлен");
+        } catch  (IllegalArgumentException e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+        }
     }
 
-    @PutMapping("/{id}/rating")
-    public ResponseEntity<String> updateMovieRating(@PathVariable String id, @RequestParam float newRating) {
+    @PostMapping("/{id}/rating")
+    public ResponseEntity<String> updateMovieRating(@PathVariable int id, @RequestParam float newRating) {
+        try {
+            movieService.updateMovieRating(id, newRating);
+            return ResponseEntity.status(HttpStatus.OK).body("Обновлено");
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+        }
     }
 
-    @DeleteMapping("/{id}/comment")
-    public ResponseEntity<String> updateMovieComment(@PathVariable String id, @RequestParam String newComment) {
+    @PostMapping("/{id}/comment")
+    public ResponseEntity<String> updateMovieComment(@PathVariable int id, @RequestParam String newComment) {
+        try {
+            movieService.updateMovieComment(id, newComment);
+            return ResponseEntity.status(HttpStatus.OK).body("Обновлено");
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+        }
     }
 }
