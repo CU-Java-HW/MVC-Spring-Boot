@@ -17,10 +17,19 @@ public class RecommendationsService {
     }
 
     public List<Movie> sortMoviesByRating() {
-        return movieService.getAllMovies().stream().sorted(Comparator.comparing(Movie::getRating).reversed()).collect(Collectors.toList());
+        return movieService
+                .getAllMovies()
+                .stream()
+                .sorted(Comparator.comparing(Movie::getRating).reversed())
+                .collect(Collectors.toList());
     }
 
     public List<Movie> getBestMovies() {
-        return movieService.getAllMovies().stream().sorted(Comparator.comparing(Movie::getRating).reversed()).limit(5).collect(Collectors.toList());
+        return movieService
+                .getAllMovies()
+                .stream()
+                .sorted(Comparator.comparing(Movie::getRating).reversed())
+                .limit(5)
+                .collect(Collectors.toList());
     }
 }
